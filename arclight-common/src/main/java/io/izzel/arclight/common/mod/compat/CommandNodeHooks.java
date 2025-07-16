@@ -29,7 +29,6 @@ public class CommandNodeHooks {
         }
 
         try {
-            // 尝试获取新版本中的字段名
             Field currentCommandField = findCurrentCommandField(CommandNode.class);
             if (currentCommandField != null) {
                 currentBase = Unsafe.staticFieldBase(currentCommandField);
@@ -49,7 +48,6 @@ public class CommandNodeHooks {
         CURRENT_BASE = currentBase;
     }
 
-    // 尝试多种可能的字段名
     private static Field findCurrentCommandField(Class<?> clazz) {
         String[] possibleNames = {"CURRENT_COMMAND", "currentCommand", "current", "COMMAND_CONTEXT"};
 
@@ -59,7 +57,6 @@ public class CommandNodeHooks {
                 field.setAccessible(true);
                 return field;
             } catch (NoSuchFieldException ignored) {
-                // 尝试下一个可能的名称
             }
         }
         return null;
@@ -82,7 +79,6 @@ public class CommandNodeHooks {
     public static <S> boolean canUse(CommandNode<S> node, S source) {
         if (source instanceof CommandSourceStackBridge s) {
             try {
-                // 仅在字段存在时设置当前命令
                 if (!CURRENT_COMMAND_MISSING) {
                     s.bridge$setCurrentCommand(node);
                 }
