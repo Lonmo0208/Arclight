@@ -7,13 +7,13 @@
   "plugin": "io.izzel.arclight.common.mod.ArclightMixinPlugin",
   "injectors": {
     "maxShiftBy": 2,
-    "defaultRequire": 1
+    "defaultRequire": 0
   },
   "overwrites": {
     "conformVisibility": true,
     "requireAnnotations": false
   },
-  "mixinPriority": 500,
+  "mixinPriority": 1500,
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "CrashReportMixin",
@@ -39,7 +39,6 @@
     "network.ServerLoginPacketListenerImplMixin",
     "network.ServerStatusPacketListenerImplMixin",
     "network.SynchedEntityDataMixin",
-    "network.chat.ComponentMixin",
     "network.chat.StyleMixin",
     "network.chat.TextColorMixin",
     "network.protocol.PacketThreadUtilMixin",
