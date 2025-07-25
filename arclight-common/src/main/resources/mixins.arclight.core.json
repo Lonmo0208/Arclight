@@ -13,7 +13,7 @@
     "conformVisibility": true,
     "requireAnnotations": false
   },
-  "mixinPriority": 1500,
+  "mixinPriority": 500,
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "CrashReportMixin",
