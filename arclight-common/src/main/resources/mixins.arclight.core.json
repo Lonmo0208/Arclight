@@ -39,6 +39,7 @@
     "network.ServerLoginPacketListenerImplMixin",
     "network.ServerStatusPacketListenerImplMixin",
     "network.SynchedEntityDataMixin",
+    "network.chat.ComponentMixin",
     "network.chat.StyleMixin",
     "network.chat.TextColorMixin",
     "network.protocol.PacketThreadUtilMixin",
