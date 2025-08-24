@@ -7,7 +7,7 @@
   "plugin": "io.izzel.arclight.common.mod.ArclightMixinPlugin",
   "injectors": {
     "maxShiftBy": 2,
-    "defaultRequire": 1
+    "defaultRequire": 0
   },
   "overwrites": {
     "conformVisibility": true,

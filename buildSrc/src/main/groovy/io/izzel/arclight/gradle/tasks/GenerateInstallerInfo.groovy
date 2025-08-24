@@ -122,7 +122,8 @@ class GenerateInstallerInfo extends DefaultTask {
         def installerUrl = "https://files.minecraftforge.net/maven/net/minecraftforge/forge/$minecraftVersion-$forgeVersion/forge-$minecraftVersion-$forgeVersion-installer.jar"
         def tmpInstaller = Files.createTempFile("installer", "jar")
         Utils.download(installerUrl, tmpInstaller.toFile())
-        def neoforgeUrl = "https://maven.neoforged.net/releases/net/neoforged/neoforge/$neoforgeVersion/neoforge-$neoforgeVersion-installer.jar"
+        def localNeoForgeFile = new File(project.rootProject.projectDir, "arclight-neoforge/libs/neoforge-$neoforgeVersion-installer.jar")
+        def neoforgeUrl = localNeoForgeFile.toURI().toURL().toString()
         def tmpNeoforge = Files.createTempFile("neoforge", "jar")
         Utils.download(neoforgeUrl, tmpNeoforge.toFile())
         def fabricLoaderUrl = "https://maven.fabricmc.net/net/fabricmc/fabric-loader/$fabricLoaderVersion/fabric-loader-${fabricLoaderVersion}.jar"

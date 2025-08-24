@@ -1129,8 +1129,11 @@ public abstract class ServerGamePacketListenerImplMixin extends ServerCommonPack
     @Overwrite
     private void broadcastChatMessage(PlayerChatMessage playerchatmessage) {
         String s = playerchatmessage.signedContent();
-        if (s.isEmpty()) {
+        if (s == null || s.isEmpty()) {
             LOGGER.warn(this.player.getScoreboardName() + " tried to send an empty message");
+        } else if (s.length() > 256) { // Validate message length
+            LOGGER.warn(this.player.getScoreboardName() + " tried to send a message that is too long: " + s.length() + " characters");
+            this.disconnect("Chat message too long!");
         } else if (getCraftPlayer().isConversing()) {
             final String conversationInput = s;
             ((MinecraftServerBridge) this.server).bridge$queuedProcess(() -> getCraftPlayer().acceptConversationInput(conversationInput));
@@ -1688,7 +1691,7 @@ public abstract class ServerGamePacketListenerImplMixin extends ServerCommonPack
             PlayerTeleportEvent event = new PlayerTeleportEvent(player, from.clone(), to.clone(), cause);
             this.cserver.getPluginManager().callEvent(event);
             if (event.isCancelled() || !to.equals(event.getTo())) {
-                relativeSet.clear();
+                relativeSet = Collections.emptySet();
                 to = (event.isCancelled() ? event.getFrom() : event.getTo());
                 x = to.getX();
                 y = to.getY();
